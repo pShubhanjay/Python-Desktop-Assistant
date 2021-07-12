@@ -31,7 +31,7 @@ def speak(audio):
 
 #time function
 def time():
-    Time = datetime.datetime.now().strftime("%H:%M:%S")
+    Time = datetime.datetime.now().strftime("%H:%M")
     speak("The current time is")
     print(Time)
     speak(Time)
@@ -43,11 +43,9 @@ def date():
     month = int(datetime.datetime.now().month)
     date = int(datetime.datetime.now().day)
     speak("The current date is")
-    print(date)
+    print(date, month, year)
     speak(date)
-    print(month)
     speak(month)
-    print(year)
     speak(year)
 
 
@@ -91,6 +89,7 @@ def wishme():
 
     speak("Please tell me how can i help you?")
     print("How can i help you?")
+
 
 def wishme_end():
     print("Bye!")
@@ -176,6 +175,7 @@ def weather():
 
 
 def personal():
+    print("I am an AI assistant, constantly learning from you")
     speak("I am an AI assistant, constantly learning from you")
 
 
@@ -198,16 +198,6 @@ if __name__ == "__main__":
 #weather
         elif ("weather" in query or "temperature" in query):
             weather()
-
-#personal info
-        elif ("tell me about yourself" in query):
-            personal()
-        elif ("about you" in query):
-            personal()
-        elif ("who are you" in query):
-            personal()
-        elif ("yourself" in query):
-            personal()
 
 # changing voice
         elif ("voice" in query):
@@ -248,6 +238,7 @@ if __name__ == "__main__":
             chromepath = 'C:/Program Files/Google/Chrome/Application/chrome.exe %s'
             search = takeCommand().lower()
             wb.get(chromepath).open_new_tab(search + '.com')
+            quit()
 
 #os related tasks
 #sysytem logout/ shut down/restart
@@ -272,7 +263,7 @@ if __name__ == "__main__":
 #play songs
 
         elif ("play songs" in query):
-            speak("Opening music player...")
+            print("Opening music player...")
             speak("Playing...")
             songs_dir = "F:\\Music\\Hollywood"
             songs = os.listdir(songs_dir)
@@ -284,8 +275,8 @@ if __name__ == "__main__":
         elif ("remind me" in query or "reminder" in query):
             speak("What is the reminder?")
             data = takeCommand()
-            print("You said to remember that" + data)
-            speak("You said to remember that" + data)
+            print("You said to remember  " + data)
+            speak("You said to remember  " + data)
             reminder_file = open("data.txt", 'a')
             reminder_file.write('\n')
             reminder_file.write(data)
@@ -298,19 +289,29 @@ if __name__ == "__main__":
             print("You said me to remember that: " + reminder_file.read())
             speak("You said me to remember that: " + reminder_file.read())
 
-#features
-        elif ("what can you do" in query or "help" in query
+# personal info
+        elif ("tell me about yourself" in query):
+            personal()
+        elif ("about you" in query):
+            personal()
+        elif ("who are you" in query):
+            personal()
+        elif ("yourself" in query):
+            personal()
+
+        #features
+        elif ("your features" in query or "help" in query
               or "features" in query):
             features = ''' i can help to do lot many things like..
             i can tell you the current time and date,
             i can tell you the current weather,
             i can play songs,
             i can open any website,
-            i can search the thing on wikipedia,
+            i can search things on wikipedia,
             i can tell you battery and cpu usage,
             i can create the reminder list,
             i can take screenshots,
-            and change my voice too.
+            and can change my voice too.
             tell me what can i do for you??
             '''
             print(features)
